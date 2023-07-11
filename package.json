@@ -1,11 +1,12 @@
 {
   "name": "awesome-books-app",
   "version": "1.0.0",
-  "description": "Awesome Books App",
+  "description": "To do List App",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "webpack",
+    "start": "webpack serve"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,12 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.21.0"
+    "stylelint-scss": "^3.21.0",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }
