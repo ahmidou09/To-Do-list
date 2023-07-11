@@ -10,14 +10,11 @@ This project is a To-Do List application created using webpack
   - [🛠️ Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -51,11 +48,6 @@ This project involves building a simple HTML To Do list that will be styled acco
 - **Delete tasks from the list**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Live Demo <a name="live-demo"></a>
-
-🚀 Live Demo
-Link to our deployed project.
 
 <!-- GETTING STARTED -->
 
