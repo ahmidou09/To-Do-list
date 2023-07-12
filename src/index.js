@@ -3,4 +3,4 @@ import TodoList from './todoList.js';
 
 const task = new TodoList();
 
-task.renderTasks();
+task.init();

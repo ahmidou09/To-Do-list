@@ -3,19 +3,24 @@ class TodoList {
     this.input = document.querySelector('.input');
     this.form = document.querySelector('.form');
     this.list = document.querySelector('.list');
+  }
 
+  init = () => {
     // add tasks
     this.form.addEventListener('submit', this.addTask.bind(this));
 
+    // delete a task
     this.list.addEventListener('click', (e) => {
-      // delete a task
       this.deleteTask(e);
     });
 
+    // edit a task description
     this.list.addEventListener('blur', (e) => {
-      // edit a task description
       this.editTask(e);
     }, true);
+
+    // render Tasks
+    this.renderTasks();
   }
 
   getTasks = () => {
