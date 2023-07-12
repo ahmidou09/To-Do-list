@@ -10,10 +10,12 @@ class TodoList {
     this.list.addEventListener('click', (e) => {
       // delete a task
       this.deleteTask(e);
+    });
 
+    this.list.addEventListener('blur', (e) => {
       // edit a task description
       this.editTask(e);
-    });
+    }, true);
   }
 
   getTasks = () => {
