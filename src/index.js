@@ -1,5 +1,5 @@
 import './style.css';
-import TodoList from './todoList.js';
+import TodoList from './modules/todoList.js';
 
 const task = new TodoList();
 
