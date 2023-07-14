@@ -17,10 +17,9 @@ body {
 
 .container {
   max-width: 120rem;
-  margin: 0 auto;
-  display: grid;
-  place-items: center;
-  height: 100vh;
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
 }
 
 .todo-list {
