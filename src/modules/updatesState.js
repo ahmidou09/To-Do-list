@@ -2,9 +2,10 @@ import { getTasks, saveTasks } from './localStorage.js';
 import renderTasks from './renderTasks.js';
 
 function updateStatus(e) {
-  if (e.target.closest('.checkbox')) {
-    const index = +e.target.nextElementSibling.dataset.id;
-    const completed = e.target.checked;
+  const item = e.target.closest('.checkbox');
+  if (item) {
+    const index = +item.nextElementSibling.dataset.id;
+    const completed = item.checked;
     const tasks = getTasks();
     tasks.forEach((task) => {
       if (task.index === index) {

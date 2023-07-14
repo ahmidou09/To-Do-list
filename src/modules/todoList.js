@@ -65,7 +65,7 @@ class TodoList {
   editTask = (e) => {
     const item = e.target.closest('.description');
     if (item) {
-      const newDescription = item.textContent.trim();
+      const newDescription = item.textContent;
       const index = +item.dataset.id;
 
       const tasks = getTasks();
