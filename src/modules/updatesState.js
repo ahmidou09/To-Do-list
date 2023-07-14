@@ -1,4 +1,5 @@
 import { getTasks, saveTasks } from './localStorage.js';
+import renderTasks from './renderTasks.js';
 
 function updateStatus(e) {
   if (e.target.closest('.checkbox')) {
@@ -11,6 +12,7 @@ function updateStatus(e) {
       }
     });
     saveTasks(tasks);
+    renderTasks();
   }
 }
 
@@ -21,6 +23,7 @@ function clearCompletedTasks() {
     task.index = i + 1;
   });
   saveTasks(tasks);
+  renderTasks();
 }
 
 export { updateStatus, clearCompletedTasks };

@@ -1,5 +1,6 @@
 import { getTasks, saveTasks } from './localStorage.js';
 import { updateStatus, clearCompletedTasks } from './updatesState.js';
+import renderTasks from './renderTasks.js';
 
 class TodoList {
   constructor() {
@@ -20,52 +21,14 @@ class TodoList {
     this.list.addEventListener('blur', this.editTask, true);
 
     // update task status (completed/unchecked)
-    this.list.addEventListener('change', (e) => {
-      updateStatus(e);
-      this.renderTasks();
-    });
+    this.list.addEventListener('change', updateStatus);
 
     // clear all completed tasks
-    this.clearButton.addEventListener('click', () => {
-      clearCompletedTasks();
-      this.renderTasks();
-    });
+    this.clearButton.addEventListener('click', clearCompletedTasks);
 
     // render Tasks
-    this.renderTasks();
+    renderTasks();
   }
-
-  renderTasks = () => {
-    this.list.innerHTML = '';
-    getTasks().forEach((task) => {
-      const listItem = document.createElement('li');
-      listItem.classList.add('item');
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.classList.add('checkbox');
-      checkbox.checked = task.completed;
-      listItem.appendChild(checkbox);
-
-      const description = document.createElement('span');
-      description.classList.add('description');
-      description.contentEditable = true;
-      description.dataset.id = task.index;
-      description.textContent = task.description;
-      if (task.completed) {
-        description.style.textDecoration = 'line-through';
-      }
-      listItem.appendChild(description);
-
-      const deleteButton = document.createElement('button');
-      deleteButton.classList.add('btn');
-      deleteButton.id = task.index;
-      deleteButton.textContent = '❌';
-      listItem.appendChild(deleteButton);
-
-      this.list.appendChild(listItem);
-    });
-  };
 
   addTask = (e) => {
     e.preventDefault();
@@ -82,7 +45,7 @@ class TodoList {
 
     this.input.value = '';
     saveTasks(tasks);
-    this.renderTasks();
+    renderTasks();
   };
 
   deleteTask = (e) => {
@@ -95,7 +58,7 @@ class TodoList {
         task.index = i + 1;
       });
       saveTasks(tasks);
-      this.renderTasks();
+      renderTasks();
     }
   };
 
@@ -112,7 +75,7 @@ class TodoList {
         }
       });
       saveTasks(tasks);
-      this.renderTasks();
+      renderTasks();
     }
   };
 }
