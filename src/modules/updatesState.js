@@ -1,13 +1,17 @@
 import { getTasks, saveTasks } from './localStorage.js';
 
-function updateStatus(index, completed) {
-  const tasks = getTasks();
-  tasks.forEach((task) => {
-    if (task.index === index) {
-      task.completed = completed;
-    }
-  });
-  saveTasks(tasks);
+function updateStatus(e) {
+  if (e.target.closest('.checkbox')) {
+    const index = +e.target.nextElementSibling.dataset.id;
+    const completed = e.target.checked;
+    const tasks = getTasks();
+    tasks.forEach((task) => {
+      if (task.index === index) {
+        task.completed = completed;
+      }
+    });
+    saveTasks(tasks);
+  }
 }
 
 function clearCompletedTasks() {

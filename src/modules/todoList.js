@@ -11,26 +11,18 @@ class TodoList {
 
   init = () => {
     // add tasks
-    this.form.addEventListener('submit', this.addTask.bind(this));
+    this.form.addEventListener('submit', this.addTask);
 
     // delete a task
-    this.list.addEventListener('click', (e) => {
-      this.deleteTask(e);
-    });
+    this.list.addEventListener('click', this.deleteTask);
 
     // edit a task description
-    this.list.addEventListener('blur', (e) => {
-      this.editTask(e);
-    }, true);
+    this.list.addEventListener('blur', this.editTask, true);
 
     // update task status (completed/unchecked)
     this.list.addEventListener('change', (e) => {
-      if (e.target.matches('.item input[type="checkbox"]')) {
-        const index = +e.target.nextElementSibling.dataset.id;
-        const completed = e.target.checked;
-        updateStatus(index, completed);
-        this.renderTasks();
-      }
+      updateStatus(e);
+      this.renderTasks();
     });
 
     // clear all completed tasks
@@ -51,6 +43,7 @@ class TodoList {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.classList.add('checkbox');
       checkbox.checked = task.completed;
       listItem.appendChild(checkbox);
 
@@ -93,9 +86,10 @@ class TodoList {
   };
 
   deleteTask = (e) => {
-    if (e.target.closest('.btn')) {
+    const item = e.target.closest('.btn');
+    if (item) {
       let tasks = getTasks();
-      const index = +e.target.closest('.btn').id;
+      const index = +item.id;
       tasks = tasks.filter((task) => task.index !== index);
       tasks.forEach((task, i) => {
         task.index = i + 1;
@@ -106,8 +100,8 @@ class TodoList {
   };
 
   editTask = (e) => {
-    if (e.target.closest('.description')) {
-      const item = e.target.closest('.description');
+    const item = e.target.closest('.description');
+    if (item) {
       const newDescription = item.textContent.trim();
       const index = +item.dataset.id;
 
