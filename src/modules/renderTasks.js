@@ -20,15 +20,18 @@ function renderTasks() {
     description.textContent = task.description;
     if (task.completed) {
       description.style.textDecoration = 'line-through';
+      description.style.color = 'grey';
+      description.style.opacity = '.9';
     }
     listItem.appendChild(description);
 
-    const deleteButton = document.createElement('button');
-    deleteButton.classList.add('btn');
-    deleteButton.id = task.index;
-    deleteButton.textContent = '❌';
-    listItem.appendChild(deleteButton);
-
+    if (task.completed) {
+      const deleteButton = document.createElement('button');
+      deleteButton.classList.add('btn');
+      deleteButton.id = task.index;
+      deleteButton.textContent = '🗑️';
+      listItem.appendChild(deleteButton);
+    }
     list.appendChild(listItem);
   });
 }

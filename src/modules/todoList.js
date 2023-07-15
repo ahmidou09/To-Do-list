@@ -3,12 +3,13 @@ import { updateStatus, clearCompletedTasks } from './updatesState.js';
 import renderTasks from './renderTasks.js';
 
 class TodoList {
-  constructor() {
-    this.input = document.querySelector('.input');
-    this.form = document.querySelector('.form');
-    this.list = document.querySelector('.list');
-    this.clearButton = document.querySelector('.btn-clear');
-  }
+  input = document.querySelector('.input');
+
+  form = document.querySelector('.form');
+
+  list = document.querySelector('.list');
+
+  clearButton = document.querySelector('.btn-clear');
 
   init = () => {
     // add tasks
@@ -65,6 +66,7 @@ class TodoList {
   editTask = (e) => {
     const item = e.target.closest('.description');
     if (item) {
+      item.parentElement.style.color = 'red';
       const newDescription = item.textContent;
       const index = +item.dataset.id;
 
