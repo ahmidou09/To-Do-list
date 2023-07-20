@@ -1,5 +1,5 @@
 import TodoList from './todoList.js';
-import { saveTasks } from './localStorage.js';
+import { getTasks, saveTasks } from './localStorage.js';
 import renderTasks from './renderTasks.js';
 
 jest.mock('./localStorage', () => ({
@@ -57,6 +57,41 @@ describe('TodoList', () => {
 
       // Check if the input element was cleared
       expect(inputElement.value).toBe('');
+    });
+  });
+
+  describe('deleteTask', () => {
+    it('should delete a task when the delete button is clicked', () => {
+      // Mock the event target (delete button)
+      const deleteButton = document.createElement('button');
+      deleteButton.classList.add('btn');
+      deleteButton.id = '1'; // Simulate deleting the task with index 1
+      const event = createMockEvent(deleteButton);
+      // Mock the initial tasks in localStorage
+      const initialTasks = [
+        {
+          description: 'Task 1',
+          completed: false,
+          index: 1,
+        },
+        {
+          description: 'Task 2',
+          completed: false,
+          index: 2,
+        },
+      ];
+      getTasks.mockReturnValue(initialTasks);
+      // Call the deleteTask function
+      todoList.deleteTask(event);
+      // Check if the correct task was deleted from localStorage and renderTasks was called
+      expect(saveTasks).toHaveBeenCalledWith([
+        {
+          description: 'Task 2',
+          completed: false,
+          index: 1, // The index of the remaining task should be updated
+        },
+      ]);
+      expect(renderTasks).toHaveBeenCalled();
     });
   });
 });
