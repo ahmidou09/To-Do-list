@@ -1,5 +1,5 @@
 import TodoList from './todoList.js';
-import { getTasks, saveTasks } from './localStorage.js';
+import { saveTasks } from './localStorage.js';
 import renderTasks from './renderTasks.js';
 
 jest.mock('./localStorage', () => ({
