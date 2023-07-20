@@ -94,4 +94,37 @@ describe('TodoList', () => {
       expect(renderTasks).toHaveBeenCalled();
     });
   });
+
+  describe('editTask', () => {
+    it('should update the description of a task in localStorage', () => {
+      // Mock the event target (description element)
+      const descriptionElement = document.createElement('span');
+      descriptionElement.classList.add('description');
+      descriptionElement.dataset.id = '1'; // Simulate editing the task with index 1
+      descriptionElement.textContent = 'New Task Description'; // Updated description value
+      const event = {
+        target: descriptionElement,
+        preventDefault: jest.fn(),
+      };
+      // Mock the initial tasks in localStorage
+      const initialTasks = [
+        {
+          description: 'Old Task Description',
+          completed: false,
+          index: 1,
+        },
+      ];
+      getTasks.mockReturnValue(initialTasks);
+      // Call the editTask function
+      todoList.editTask(event);
+      // Check if the task description was updated in localStorage
+      expect(saveTasks).toHaveBeenCalledWith([
+        {
+          description: 'New Task Description', // Updated description value
+          completed: false,
+          index: 1,
+        },
+      ]);
+    });
+  });
 });

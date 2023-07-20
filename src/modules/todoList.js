@@ -66,7 +66,6 @@ class TodoList {
   editTask = (e) => {
     const item = e.target.closest('.description');
     if (item) {
-      item.parentElement.style.color = 'red';
       const newDescription = item.textContent;
       const index = +item.dataset.id;
 
