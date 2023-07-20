@@ -11,6 +11,7 @@ function renderTasks() {
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
     checkbox.checked = task.completed;
+    checkbox.dataset.id = task.index;
     listItem.appendChild(checkbox);
 
     const description = document.createElement('span');
