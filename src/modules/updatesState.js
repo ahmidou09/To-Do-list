@@ -4,7 +4,7 @@ import renderTasks from './renderTasks.js';
 function updateStatus(e) {
   const item = e.target.closest('.checkbox');
   if (item) {
-    const index = +item.nextElementSibling.dataset.id;
+    const index = +item.dataset.id;
     const completed = item.checked;
     const tasks = getTasks();
     tasks.forEach((task) => {
